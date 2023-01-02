@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>关于dom事件 | 哎呀呀</title><meta name="author" content="aiyaya"><meta name="copyright" content="aiyaya"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="接触项目以来一直用的是框架，原生很多东西很基础自己却没掌握好，总结一下关于dom事件。dom事件指的就是dom.Event,表示在dom 中发生的任何事件,大致可以包括：用户交互操作产生（例如鼠标或键盘事件），或者由 API 生成（例如指示动画已经完成运行的事件，视频已被暂停等等）。dom的事件流分为三个阶段：  捕获阶段：当我们在 DOM 树的某个节点发生了一些操作（例如单击、鼠标移动上去），就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于dom事件">
+<meta property="og:url" content="http://example.com/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/index.html">
+<meta property="og:site_name" content="哎呀呀">
+<meta property="og:description" content="接触项目以来一直用的是框架，原生很多东西很基础自己却没掌握好，总结一下关于dom事件。dom事件指的就是dom.Event,表示在dom 中发生的任何事件,大致可以包括：用户交互操作产生（例如鼠标或键盘事件），或者由 API 生成（例如指示动画已经完成运行的事件，视频已被暂停等等）。dom的事件流分为三个阶段：  捕获阶段：当我们在 DOM 树的某个节点发生了一些操作（例如单击、鼠标移动上去），就">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-29T07:41:50.000Z">
+<meta property="article:modified_time" content="2023-01-02T10:07:47.513Z">
+<meta property="article:author" content="aiyaya">
+<meta property="article:tag" content="技术">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/%5Bobject%20Object%5D"><link rel="canonical" href="http://example.com/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于dom事件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-01-02 18:07:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/blog/%E5%A4%B4%E5%83%8F/taking%20photo.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">哎呀呀</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于dom事件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-08-29T07:41:50.000Z" title="发表于 2019-08-29 15:41:50">2019-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-02T10:07:47.513Z" title="更新于 2023-01-02 18:07:47">2023-01-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="关于dom事件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>接触项目以来一直用的是框架，原生很多东西很基础自己却没掌握好，总结一下关于<code>dom</code>事件。<br><code>dom</code>事件指的就是<code>dom.Event</code>,表示在dom 中发生的任何事件,大致可以包括：用户交互操作产生（例如鼠标或键盘事件），或者由 API 生成（例如指示动画已经完成运行的事件，视频已被暂停等等）。<br><code>dom</code>的事件流分为三个阶段：</p>
+<ol>
+<li><p>捕获阶段：当我们在 DOM 树的某个节点发生了一些操作（例如单击、鼠标移动上去），就会有一个事件发射过去。这个事件从 Window 发出，不断经过下级节点直到触发的目标节点。在到达目标节点之前的过程，就是捕获阶段（Capture Phase）。事件由页面元素接收，逐级向下，到具体的元素。</p>
+</li>
+<li><p>目标阶段：当事件不断的传递直到目标节点的时候，最终在目标节点上触发这个事件，就是目标阶段。具体的元素本身。</p>
+</li>
+<li><p>冒泡阶段：事件冒泡即事件开始时，由最具体的元素接收（也就是事件发生所在的节点），然后逐级传播到较为不具体的节点。跟捕获相反，具体元素本身，逐级向上，到页面元素（我们平时用的事件绑定就是利用的事件冒泡的原理）。</p>
+<blockquote>
+<p>事件捕获：当使用事件捕获时，父级元素先触发，子元素后触发。<br>事件冒泡：当使用事件冒泡时，子元素先触发，父元素后触发</p>
+</blockquote>
+</li>
+</ol>
+<p>了解了事件的传递过程接下去看如何注册事件监听器，有三种注册事件监听器的方法<br>1.<code>EventTraget.addEventListener</code>平时使用中用的教多的一种方式，包含三个参数：监听事件的类型（比如click等），具体事件（一般是一个函数），冒泡或者捕获事件（默认为false冒泡）  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>); </span><br><span class="line"><span class="keyword">var</span> app1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app1&#x27;</span>);</span><br><span class="line">app.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;      </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是父元素&#x27;</span>)  </span><br><span class="line">&#125;)  </span><br><span class="line">app1.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;    </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是子元素&#x27;</span>)  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/dom1.gif" alt="冒泡1"><br>测试一下假如改变最后一个参数为true  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> app = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>);</span><br><span class="line"> <span class="keyword">var</span> app1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app1&#x27;</span>);</span><br><span class="line"> app.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123; </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是父元素&#x27;</span>)</span><br><span class="line"> &#125;, <span class="literal">true</span>);</span><br><span class="line">app1.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;   </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是子元素&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>看一下效果：<br><img src="https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/dom2.gif" alt="第三个参数"><br>第三个参数 就是决定了我在冒泡的时候还是捕获的时候触发当前的事件 所以一开始默认是false 就是冒泡 当我们点击最里面事件 在最后由里向外传递的时候依次触发 然鹅当我只有把父组件的第三个参数改为true（捕获模式） 一开始点击子组件的时候才会在由外向里传递的过程中就触发了 父组件的弹窗 所以是把true放在父组件上 没毛病了😂<br>2.利用html属性 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&#x27;alert(123456)&#x27;</span>&gt;</span>我是按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一般不建议使用<br>3.dom事件属性  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app1.<span class="property">onclick</span> = <span class="keyword">function</span>&#123;<span class="title function_">alert</span>(<span class="string">&#x27;第三种模式&#x27;</span>)&#125;</span><br></pre></td></tr></table></figure>
+<p>既然前面讲到了冒泡和捕获，在实际的项目中，因为事件捕获的存在有时候会影响我们需要的效果，举个，设计一个弹窗<code>div</code>，需求是在当点击弹窗之外的遮罩层（即window部分）的时候弹窗消失，但是因为事件冒泡的原因，当点击弹窗本身也会导致弹窗消失，此时我们就需要阻止冒泡啦～<br>w3c阻止冒泡方法是<code>e.stopPropagation()</code>，IE则是使用<code>e.cancelBubble = true</code>，可以用之前的来亲测一波： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> app1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app1&#x27;</span>);</span><br><span class="line">app.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;  </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是父元素&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app1.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params">ev</span>) &#123;   </span><br><span class="line">    <span class="comment">// console.log(ev)  </span></span><br><span class="line">    ev.<span class="title function_">stopPropagation</span>();   </span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&#x27;我是子元素&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/dom3.gif" alt="阻止默认事件"><br>还有一个是事件委托，emmm…我的理解就是通过事件冒泡原理，把子元素的事件全都通过父级元素实现，比如一个<code>ul</code>列表，如果要在每一个<code>li</code>上绑定事件触发未免太麻烦了，于是乎我们可以把事件绑定在<code>ul</code>上，事件委托还用到一个dom属性，就是<code>event.target</code>，它表示触发事件的对象 (某个DOM元素) 的引用，举个：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ul2 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;ul2&#x27;</span>);</span><br><span class="line">ul2.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params">ev</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(ev.<span class="property">target</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>效果：<br>这样子我们就能捕获到每一个准确的子元素并且触发相应的事件了</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">aiyaya</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/">http://example.com/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">哎呀呀</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/12/20/overflow-%E6%BA%A2%E5%87%BA%E6%93%8D%E4%BD%9C/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">overflow-溢出操作</div></div></a></div><div class="next-post pull-right"><a href="/2019/08/29/vuex%E5%AD%A6%E4%B9%A0/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">vuex学习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2019/03/19/nzh%E7%9A%84%E4%BD%BF%E7%94%A8/" title="nzh的使用"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-19</div><div class="title">nzh的使用</div></div></a></div><div><a href="/2019/08/29/vuex%E5%AD%A6%E4%B9%A0/" title="vuex学习"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-29</div><div class="title">vuex学习</div></div></a></div><div><a href="/2019/12/20/overflow-%E6%BA%A2%E5%87%BA%E6%93%8D%E4%BD%9C/" title="overflow-溢出操作"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-12-20</div><div class="title">overflow-溢出操作</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/blog/%E5%A4%B4%E5%83%8F/taking%20photo.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">aiyaya</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/aiyaya211" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/1045858991@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/23/%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/" title="重新开始"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="重新开始"/></a><div class="content"><a class="title" href="/2022/12/23/%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/" title="重新开始">重新开始</a><time datetime="2022-12-23T07:41:50.000Z" title="发表于 2022-12-23 15:41:50">2022-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/23/hello-world/" title="Hello World"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/12/23/hello-world/" title="Hello World">Hello World</a><time datetime="2022-12-23T04:23:15.464Z" title="发表于 2022-12-23 12:23:15">2022-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/12/22/webpack%E5%88%9D%E4%BD%93%E9%AA%8C/" title="webpack初体验"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="webpack初体验"/></a><div class="content"><a class="title" href="/2019/12/22/webpack%E5%88%9D%E4%BD%93%E9%AA%8C/" title="webpack初体验">webpack初体验</a><time datetime="2019-12-22T12:41:50.000Z" title="发表于 2019-12-22 20:41:50">2019-12-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/12/20/overflow-%E6%BA%A2%E5%87%BA%E6%93%8D%E4%BD%9C/" title="overflow-溢出操作"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="overflow-溢出操作"/></a><div class="content"><a class="title" href="/2019/12/20/overflow-%E6%BA%A2%E5%87%BA%E6%93%8D%E4%BD%9C/" title="overflow-溢出操作">overflow-溢出操作</a><time datetime="2019-12-20T07:41:50.000Z" title="发表于 2019-12-20 15:41:50">2019-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/" title="关于dom事件"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="关于dom事件"/></a><div class="content"><a class="title" href="/2019/08/29/%E5%85%B3%E4%BA%8Edom%E4%BA%8B%E4%BB%B6/" title="关于dom事件">关于dom事件</a><time datetime="2019-08-29T07:41:50.000Z" title="发表于 2019-08-29 15:41:50">2019-08-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By aiyaya</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
